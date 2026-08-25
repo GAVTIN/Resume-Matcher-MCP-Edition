@@ -1,0 +1,11 @@
+Klaus Richter
+Frontend Engineer
+
+Experience:
+- 7 years of frontend engineering experience, primarily using Vue.js and Angular.
+- Built and maintained a large-scale enterprise dashboard application using Angular and RxJS.
+- Migrated a legacy AngularJS application to Vue 3, improving maintainability and developer velocity.
+- Implemented state management using Vuex and later Pinia across multiple product surfaces.
+- Limited hands-on experience with React, gained through a short internal training project.
+
+Skills: Vue.js, Angular, TypeScript, RxJS, Vuex, Pinia, JavaScript, SCSS

@@ -1,0 +1,11 @@
+Victor Adeyemi
+Principal Frontend Architect
+
+Experience:
+- 13 years of frontend engineering experience, including 5 years defining frontend architecture at an organizational level.
+- Designed the frontend platform strategy for a company spanning 15+ product teams and over 100 frontend engineers.
+- Drove adoption of a shared design system and component library, cutting new-feature UI development time by 50% company-wide.
+- Led evaluation of build and rendering strategies, including server components and edge rendering, to improve performance at scale.
+- Regularly advises engineering leadership on frontend technology strategy and long-term technical roadmap.
+
+Skills: React, TypeScript, Next.js, Server Components, Micro-frontends, GraphQL, Performance Engineering, System Design, Mentorship

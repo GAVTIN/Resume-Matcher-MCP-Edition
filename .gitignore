@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.pytest_cache/
+.mcp_watch_state.json
+results/match_results.jsonl
+results/notifications.log
+*.egg-info/
+.DS_Store

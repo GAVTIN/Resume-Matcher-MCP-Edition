@@ -1,0 +1,11 @@
+Sarah Lindqvist
+Frontend Engineer, Accessibility Specialist
+
+Experience:
+- 6 years of frontend engineering experience with a specialized focus on web accessibility.
+- Led an organization-wide accessibility audit and remediation effort, achieving WCAG 2.1 AA compliance across 6 products.
+- Built accessible component primitives (modals, comboboxes, menus) used as the foundation of the company design system.
+- Trained over 30 engineers on accessible development practices through internal workshops.
+- Partnered with legal and compliance teams to address ADA-related accessibility requirements.
+
+Skills: React, TypeScript, ARIA, WCAG 2.1, axe-core, Screen Reader Testing (NVDA, VoiceOver), JavaScript, CSS

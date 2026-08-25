@@ -1,0 +1,15 @@
+Lena Fischer
+Frontend Engineer
+
+Experience:
+- 7 years of frontend engineering, primarily React, TypeScript, and
+  Redux.
+- Built component libraries and design systems used across multiple
+  product teams.
+- Some backend exposure writing small Node.js BFF (backend-for-
+  frontend) endpoints, but no experience with relational databases,
+  distributed systems, or cloud infrastructure.
+- Led frontend performance initiatives that improved Core Web Vitals
+  scores significantly.
+
+Skills: React, TypeScript, Redux, Next.js, Webpack, Accessibility

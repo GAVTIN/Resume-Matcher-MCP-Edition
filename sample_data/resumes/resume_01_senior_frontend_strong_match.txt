@@ -1,0 +1,11 @@
+Marcus Chen
+Senior Frontend Engineer
+
+Experience:
+- 8 years of frontend engineering experience, specializing in React, TypeScript, and state management with Redux and Zustand.
+- Architected and led development of a component library adopted by 12+ product teams, reducing UI development time by 40%.
+- Drove migration from Create React App to Next.js across three major products, improving average page load time by 35%.
+- Mentored a team of 5 frontend engineers and established frontend code review standards and testing practices.
+- Partnered closely with design and product teams to define and implement a company-wide design system.
+
+Skills: React, TypeScript, Redux, Next.js, GraphQL, Webpack, Jest, Testing Library, Accessibility (WCAG 2.1), CI/CD

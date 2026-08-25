@@ -1,0 +1,11 @@
+Robert Kaminski
+Backend Engineer
+
+Experience:
+- 6 years of backend engineering experience building scalable services in Java and Go.
+- Designed and implemented microservices handling over 10 million requests per day using Spring Boot and Kafka.
+- Owned the data modeling and query optimization for a PostgreSQL cluster supporting core billing systems.
+- Migrated a monolithic order-processing system to an event-driven architecture on AWS, reducing latency by 60%.
+- On-call rotation lead for production incident response across distributed systems.
+
+Skills: Java, Go, Spring Boot, PostgreSQL, Kafka, AWS (ECS, RDS, SQS), Docker, Kubernetes, Terraform

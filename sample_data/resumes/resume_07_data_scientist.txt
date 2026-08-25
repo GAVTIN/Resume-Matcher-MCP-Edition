@@ -1,0 +1,11 @@
+Hannah Weiss
+Data Scientist
+
+Experience:
+- 5 years of experience building machine learning models for demand forecasting and customer segmentation.
+- Developed a churn prediction model that improved retention campaign targeting, increasing conversion by 18%.
+- Built data pipelines using Airflow and dbt to process terabytes of behavioral data daily.
+- Presented findings and recommendations to executive stakeholders on a quarterly basis.
+- Collaborated with engineering to productionize models via internal ML serving infrastructure.
+
+Skills: Python, pandas, scikit-learn, SQL, Airflow, dbt, TensorFlow, Tableau, Statistics

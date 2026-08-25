@@ -1,0 +1,15 @@
+Daniel Okafor
+Backend Developer
+
+Experience:
+- 3 years as a backend developer, primarily Node.js/Express with
+  MongoDB.
+- Built and maintained REST APIs for an e-commerce platform.
+- Some exposure to Docker for local development; has not deployed to
+  a cloud provider directly (DevOps team handled that).
+- Familiar with basic caching strategies but has not designed a
+  distributed system from scratch.
+- Comfortable with unit testing (Jest) and CI pipelines (GitHub
+  Actions).
+
+Skills: Node.js, Express, MongoDB, Docker, Jest, GitHub Actions

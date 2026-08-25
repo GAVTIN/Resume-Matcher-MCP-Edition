@@ -1,0 +1,11 @@
+Sofia Marquez
+Full Stack Engineer
+
+Experience:
+- 5 years of full stack development experience across React frontends and Node.js backends.
+- Built a full-featured SaaS application from scratch, including the React/TypeScript frontend and Express/PostgreSQL backend.
+- Designed REST APIs and database schemas, and implemented authentication and authorization with JWT.
+- Deployed and maintained infrastructure on AWS using EC2, S3, and RDS, with CI/CD via GitHub Actions.
+- Collaborated directly with founders in a startup environment, owning features end-to-end.
+
+Skills: React, TypeScript, Node.js, Express, PostgreSQL, AWS, Docker, GitHub Actions, REST APIs

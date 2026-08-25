@@ -1,0 +1,11 @@
+Daniel Osei
+Frontend Engineer
+
+Experience:
+- 4 years of experience developing single-page applications using React and TypeScript.
+- Built and maintained a customer-facing e-commerce checkout flow handling over 50,000 daily transactions.
+- Integrated REST and GraphQL APIs into frontend applications, improving data-fetching performance with caching strategies.
+- Collaborated with UX designers to implement pixel-perfect, accessible interfaces from Figma designs.
+- Wrote unit and integration tests using Jest and React Testing Library, increasing test coverage from 45% to 80%.
+
+Skills: React, TypeScript, JavaScript, GraphQL, Redux Toolkit, Jest, React Testing Library, Sass, Git

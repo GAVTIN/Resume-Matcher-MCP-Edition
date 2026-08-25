@@ -1,0 +1,251 @@
+# Resume Matcher — MCP Edition
+
+**Milestone 2 capstone:** the Milestone 1 resume-matching agent's direct
+filesystem tools, replaced with a standalone MCP server, plus a
+LangGraph agent refactored to speak to it (and a second MCP server)
+through a real MCP client instead of local function calls.
+
+## Learning objectives → what's in this repo
+
+| Objective | Where |
+|---|---|
+| Understand Model Context Protocol | `filesystem_mcp_server.py` implements tools *and* resources; tested against the real JSON-RPC 2.0 wire protocol in `tests/` (not mocked) |
+| Replace custom tools with MCP servers | Every Milestone 1 filesystem operation is now an `@mcp.tool()`; nothing in `matching_agent.py` imports filesystem code directly |
+| Implement standardized tool interfaces | Consistent `{"success": bool, ...}` envelope on every tool; structured JSON-RPC-style error codes (see below) |
+| Deploy production-ready systems | Env-based config, bounded concurrency, partial-failure handling, a tested env-forwarding fix, 14 passing tests across unit + protocol layers |
+
+## Architecture
+
+```mermaid
+flowchart LR
+    subgraph "Agent process (matching_agent.py)"
+        A["LangGraph StateGraph"] --> B["MultiServerMCPClient"]
+        A --> L["Claude (LLM)\nstructured scoring"]
+    end
+    B <-->|"JSON-RPC 2.0 / stdio"| C["filesystem_mcp_server.py"]
+    B <-->|"JSON-RPC 2.0 / stdio"| D["notifications_mcp_server.py"]
+    C --> E[("sample_data/resumes/\nresults/")]
+    D --> F[("results/notifications.log")]
+```
+
+Two independent MCP servers, each a separate OS process, each with no
+knowledge of the other or of LangGraph. The agent discovers their tools
+at startup (`client.get_tools()`) and calls them by name — that's the
+whole point of the refactor: `filesystem_mcp_server.py` could gain a
+new tool tomorrow and `matching_agent.py` wouldn't need a code change.
+
+## State machine (agent ↔ MCP interaction)
+
+```mermaid
+stateDiagram-v2
+    [*] --> check_new_resumes
+    check_new_resumes --> batch_extract: new files found
+    check_new_resumes --> [*]: nothing new — short-circuit
+    batch_extract --> match: text extracted
+    match --> rank_and_save: LLM structured scoring
+    rank_and_save --> notify: results persisted
+    notify --> [*]: done
+
+    note right of check_new_resumes
+        filesystem server
+        tool: watch_directory
+    end note
+    note right of batch_extract
+        filesystem server
+        tool: batch_process
+    end note
+    note right of rank_and_save
+        filesystem server
+        tool: save_match_result (per match)
+    end note
+    note right of notify
+        notifications server
+        tool: send_match_notification
+        (only matches scoring >= 70)
+    end note
+```
+
+`check_new_resumes` calling `watch_directory` first — before touching
+anything else — is deliberate: a run with nothing new short-circuits
+straight to `[*]` without spending an LLM call, and `--watch` mode (see
+below) reprocesses only what actually changed instead of the whole
+directory every time.
+
+## Setup
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+export ANTHROPIC_API_KEY=<your-api-key>
+```
+
+## Usage
+
+```bash
+# one pass over sample_data/
+python matching_agent.py
+
+# your own job description / resume folder
+python matching_agent.py --job-description path/to/jd.txt --resume-dir path/to/resumes
+
+# keep polling for newly added resumes every 15s (Ctrl+C to stop)
+python matching_agent.py --watch --interval 15
+```
+
+Run either server standalone to poke at it directly (handy with the
+[MCP Inspector](https://modelcontextprotocol.io/docs/tools/inspector)):
+
+```bash
+python filesystem_mcp_server.py
+python notifications_mcp_server.py
+```
+
+Config is env-driven — see `ServerConfig.from_env()` in
+`filesystem_mcp_server.py`:
+
+| Variable | Default |
+|---|---|
+| `RESUME_DIRECTORY` | `./sample_data/resumes` |
+| `RESULTS_DIRECTORY` | `./results` |
+| `ALLOWED_EXTENSIONS` | `.txt,.pdf,.docx` |
+| `MAX_BATCH_CONCURRENCY` | `5` |
+| `NOTIFY_SCORE_THRESHOLD` | `70` (matching_agent.py) |
+| `MATCHING_AGENT_MODEL` | `anthropic:claude-sonnet-5` |
+
+## Testing
+
+```bash
+pytest tests/ -v
+```
+
+14 tests, two layers:
+- **Unit** (`test_filesystem_mcp_server.py`, most of it): call tool
+  functions directly against a `tmp_path` fixture — fast, no
+  subprocess. Covers success paths, the `RESUME_NOT_FOUND` /
+  `INVALID_PARAMS` error codes, and `batch_process`'s partial-failure
+  reporting.
+- **Protocol** (`test_server_speaks_mcp_protocol_over_stdio`): launches
+  the real server as a subprocess and drives it with the official
+  `mcp` client SDK — `tools/list`, `tools/call`, `resources/read` —
+  over actual JSON-RPC 2.0, so it's proving the protocol layer, not
+  just the Python underneath it.
+- **Agent** (`test_matching_agent.py`): the LLM call is swapped for a
+  deterministic fake (`FakeStructuredModel`) so these need no API key —
+  they're checking the graph wiring, multi-server tool discovery, the
+  short-circuit-on-no-new-files path, and that a second `--watch`-style
+  pass only reprocesses the newly arrived file, not the whole
+  directory.
+
+## Design decisions
+
+A few things worth being able to speak to, since this is going in a
+portfolio:
+
+**MCP SDK pinned to `mcp>=1.28,<2.0`.** The Python SDK's v2 line
+shipped alongside the 2026-07-28 MCP spec revision and renames
+`FastMCP` to `MCPServer` (now under `mcp.server.mcpserver`). v1.x is
+what the current LangChain/LangGraph MCP ecosystem is built and
+documented against, so this project pins to it on purpose rather than
+by accident — worth revisiting once `langchain-mcp-adapters` and the
+wider tutorial base catch up to v2.
+
+**stdio over HTTP.** No network surface to secure, no auth to wire up,
+and it's what `MultiServerMCPClient` expects for a local "command"
+server. The tradeoff, confirmed while building this: each tool call
+opens a fresh subprocess session rather than reusing one — fine for a
+demo/CLI agent, and the honest reason a latency-sensitive production
+version would move to a long-lived `streamable-http` server instead.
+
+**Errors are structured JSON, not prose.** Every failure raises
+`ToolError` with a JSON payload carrying a `code` in the JSON-RPC
+"server error" range (`-32000`..`-32099`) plus a machine-readable
+`error` label (`RESUME_NOT_FOUND`, `DIRECTORY_NOT_FOUND`,
+`UNSUPPORTED_FILE_TYPE`, `EXTRACTION_FAILED`, `INVALID_PARAMS`).
+Confirmed end-to-end against a live client session: it surfaces as
+`CallToolResult(isError=True, ...)`, and `matching_agent.py`'s
+`_call_tool()` re-raises it as `MCPToolCallError` with the code intact
+instead of a caller having to string-match a message.
+
+**`watch_directory` polls; it doesn't push.** MCP tools are
+request/response, so this is a poll (a JSON state file of
+filename→mtime, diffed on each call) rather than an inotify/watchdog
+listener. `matching_agent.py`'s `--watch` mode is what turns that into
+something that feels live — a background listener pushing through MCP
+resource *subscriptions* would be the natural next step and is
+supported by the protocol, just out of scope here.
+
+**`batch_process` takes an explicit file list, not just a directory.**
+This is what lets `check_new_resumes → batch_extract` reprocess only
+what `watch_directory` just reported instead of the whole folder every
+time — the concurrency (`asyncio.Semaphore(MAX_BATCH_CONCURRENCY)`) is
+what makes "efficient" in the spec actually true when that list is
+long.
+
+**Env forwarding is explicit, and it's not a default you can skip.**
+Real gotcha hit while building this: `mcp`'s stdio client does *not*
+inherit the parent process's environment — it starts child servers
+with a minimal default (`PATH`/`HOME`/`TERM` only), confirmed directly
+against `mcp.client.stdio.get_default_environment()`. Without passing
+`env=dict(os.environ)` explicitly in `matching_agent.py`'s server
+config, `RESUME_DIRECTORY` and friends silently never reach
+`filesystem_mcp_server.py` — the agent runs, discovers tools fine, and
+just quietly operates on the wrong directory. Worth knowing before it
+costs you a debugging session.
+
+## Repo structure
+
+```
+resume-matcher-mcp/
+├── filesystem_mcp_server.py      # Part A
+├── notifications_mcp_server.py   # Part B bonus: 2nd MCP server
+├── matching_agent.py             # Part B
+├── requirements.txt
+├── pytest.ini
+├── tests/
+│   ├── test_filesystem_mcp_server.py
+│   └── test_matching_agent.py
+├── sample_data/
+│   ├── job_description.txt
+│   └── resumes/                  # 3 resumes, deliberately strong/partial/weak fit
+└── results/                      # match_results.jsonl + notifications.log (gitignored)
+```
+
+## Demo video script (5–6 min)
+
+1. **0:00–0:45 — Setup.** What Milestone 1 was (direct filesystem
+   tools called in-process) and what's changing (those tools now live
+   behind an MCP server; the agent talks to them as a client).
+2. **0:45–2:00 — `filesystem_mcp_server.py`.** Walk `list_resumes`,
+   `watch_directory`, `batch_process`; point at the JSON error envelope
+   and the `-32001`-range codes; run it under the MCP Inspector (or
+   `pytest tests/test_filesystem_mcp_server.py -v`) to show a live
+   `tools/list` and a deliberate `read_resume` failure returning
+   `isError=True`.
+3. **2:00–2:45 — `notifications_mcp_server.py`.** The bonus multi-MCP
+   server — point out it's a completely separate process/file with no
+   import relationship to the filesystem server.
+4. **2:45–4:15 — Run the agent.** `python matching_agent.py` against
+   `sample_data/`; narrate the printed log lines against the state
+   diagram as each node fires; show the ranked output and that only
+   the >=70 match got a notification (`results/notifications.log`).
+5. **4:15–5:15 — Live watch demo.** `python matching_agent.py --watch
+   --interval 10`, then drop a new `.txt` resume into
+   `sample_data/resumes/` mid-recording — show it get picked up and
+   scored on the next poll, without the earlier resumes being
+   reprocessed.
+6. **5:15–6:00 — Wrap.** `pytest tests/ -v` green; one sentence each on
+   the env-forwarding gotcha and the `mcp<2.0` pin as the two decisions
+   worth defending in Q&A; link the repo.
+
+## Publishing to GitHub
+
+```bash
+cd resume-matcher-mcp
+git init
+git add .
+git commit -m "Milestone 2: filesystem MCP server + LangGraph agent refactor"
+git branch -M main
+git remote add origin https://github.com/GAVTIN/resume-matcher-mcp.git
+git push -u origin main
+```

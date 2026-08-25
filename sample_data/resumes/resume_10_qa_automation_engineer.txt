@@ -1,0 +1,11 @@
+Thomas Nguyen
+QA / Test Automation Engineer
+
+Experience:
+- 6 years of experience in manual and automated testing for web applications.
+- Built and maintained an end-to-end test suite using Cypress, covering critical user flows across a React application.
+- Reduced regression testing time by 70% through automation of previously manual test cases.
+- Collaborated with frontend engineers to identify and resolve UI bugs before release.
+- Introduced visual regression testing using Percy to catch unintended UI changes.
+
+Skills: Cypress, Selenium, JavaScript, Percy, Jest, Postman, Test Planning, CI/CD

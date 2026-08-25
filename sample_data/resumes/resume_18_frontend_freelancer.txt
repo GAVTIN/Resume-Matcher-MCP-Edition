@@ -1,0 +1,11 @@
+Isabelle Moreau
+Freelance Frontend Developer
+
+Experience:
+- 6 years of freelance and contract frontend development experience across 20+ client projects.
+- Built marketing websites, e-commerce storefronts, and internal tools for clients ranging from startups to mid-sized businesses, primarily using React and Next.js.
+- Managed client relationships directly, including scoping, estimating, and delivering projects independently.
+- Delivered a headless commerce storefront using Next.js and Shopify's Storefront API for a mid-sized retail client.
+- Comfortable working across varied codebases and ramping up quickly on unfamiliar projects.
+
+Skills: React, Next.js, TypeScript, Tailwind CSS, Shopify, Contentful, Vercel, Git

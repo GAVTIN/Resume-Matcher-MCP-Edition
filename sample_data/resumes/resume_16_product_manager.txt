@@ -1,0 +1,11 @@
+Jennifer Wu
+Senior Product Manager
+
+Experience:
+- 8 years of product management experience across B2B SaaS and consumer products.
+- Owned the roadmap for a core platform product, growing monthly active users by 3x over two years.
+- Partnered with engineering and design to ship 15+ major features, using data-driven prioritization frameworks.
+- Ran customer discovery interviews and translated findings into detailed product requirement documents.
+- Managed cross-functional stakeholders across engineering, design, marketing, and sales.
+
+Skills: Product Strategy, Roadmapping, SQL (basic), Jira, Amplitude, A/B Testing, Stakeholder Management

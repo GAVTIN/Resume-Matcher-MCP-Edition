@@ -1,0 +1,11 @@
+Jason Park
+iOS Engineer
+
+Experience:
+- 6 years of experience developing native iOS applications in Swift and Objective-C.
+- Shipped and maintained a consumer app with over 2 million downloads, focusing on performance and battery efficiency.
+- Migrated legacy UIKit codebase to SwiftUI, reducing UI code volume by 30%.
+- Implemented offline-first architecture using Core Data and background sync.
+- Worked closely with backend team to define API contracts for mobile-specific use cases.
+
+Skills: Swift, SwiftUI, UIKit, Objective-C, Core Data, Xcode, Combine, REST APIs, Fastlane

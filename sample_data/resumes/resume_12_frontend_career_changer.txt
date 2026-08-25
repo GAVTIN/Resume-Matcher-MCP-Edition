@@ -1,0 +1,11 @@
+Michael Ferris
+Frontend Developer
+
+Experience:
+- 1 year of professional frontend development experience following a career transition from teaching.
+- Taught high school mathematics for 8 years before completing a full-time software engineering bootcamp.
+- Built several personal and freelance projects using React before landing first developer role.
+- Currently developing internal tools using React and TypeScript at a logistics company.
+- Brings strong communication and mentoring skills from prior teaching career.
+
+Skills: React, TypeScript, JavaScript, HTML, CSS, Git, Tailwind CSS

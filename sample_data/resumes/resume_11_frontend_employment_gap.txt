@@ -1,0 +1,11 @@
+Rachel Osborne
+Frontend Engineer
+
+Experience:
+- 5 years of frontend engineering experience with React and TypeScript prior to a career break.
+- Took a 2-year career break (2023-2025) for caregiving responsibilities, staying current with the React ecosystem through personal projects and open source contributions.
+- Previously built and maintained a design system component library used across 4 internal products.
+- Implemented performance optimizations that reduced bundle size by 35% at a mid-sized fintech company.
+- Currently seeking to return to a full-time frontend engineering role.
+
+Skills: React, TypeScript, Redux, JavaScript, CSS-in-JS, Webpack, Git, Jest

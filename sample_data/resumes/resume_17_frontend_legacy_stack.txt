@@ -1,0 +1,11 @@
+David Kowalski
+Frontend Developer
+
+Experience:
+- 9 years of frontend development experience, primarily maintaining server-rendered web applications.
+- Maintained a large jQuery-based codebase serving a high-traffic e-commerce site for 6 years.
+- Implemented UI features using PHP templating (Twig) combined with jQuery and Bootstrap 3.
+- Began incorporating React components into legacy pages over the past year to modernize the stack incrementally.
+- Limited experience with modern build tooling, TypeScript, or component-based architecture at scale.
+
+Skills: jQuery, JavaScript, PHP, Twig, Bootstrap 3, CSS, some React, Grunt

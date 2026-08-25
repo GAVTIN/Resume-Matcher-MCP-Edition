@@ -1,0 +1,28 @@
+# Tested against the exact versions on the right; lower bounds pinned
+# from there. Install with: pip install -r requirements.txt
+
+# --- MCP -------------------------------------------------------------
+# Pinned <2.0 deliberately: the MCP Python SDK's v2 line (shipped for
+# the 2026-07-28 protocol revision) renames FastMCP -> MCPServer under
+# mcp.server.mcpserver. v1.x is what this project, and the current
+# LangChain/LangGraph MCP ecosystem, is built and tested against.
+# See README "Design decisions" for the full reasoning.
+mcp>=1.28,<2.0                  # tested: 1.29.0
+
+# --- LangGraph / LangChain --------------------------------------------
+langgraph>=1.2                  # tested: 1.2.11
+langchain>=1.3                  # tested: 1.3.16
+langchain-core>=1.6             # tested: 1.6.0
+langchain-anthropic>=1.6        # tested: 1.6.1 (for ANTHROPIC_API_KEY / claude-sonnet-5)
+langchain-mcp-adapters>=0.3     # tested: 0.3.2 -- MultiServerMCPClient
+
+# --- resume text extraction --------------------------------------------
+pypdf>=6.0                      # tested: 6.16.2
+python-docx>=1.2                # tested: 1.2.0
+
+# --- data / validation ---------------------------------------------------
+pydantic>=2.0                   # tested: 2.13.4
+
+# --- tests ---------------------------------------------------------------
+pytest>=8.0                     # tested: 9.1.1
+pytest-asyncio>=0.24            # tested: 1.4.0

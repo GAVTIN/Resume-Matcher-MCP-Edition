@@ -1,0 +1,11 @@
+Igor Petrov
+Site Reliability Engineer
+
+Experience:
+- 7 years of experience in infrastructure engineering and site reliability across cloud-native environments.
+- Managed Kubernetes clusters supporting 200+ microservices in production, maintaining 99.99% uptime.
+- Built Terraform modules to standardize infrastructure provisioning across AWS and GCP accounts.
+- Led incident response and postmortem processes, reducing mean time to resolution by 45%.
+- Implemented observability stack using Prometheus, Grafana, and OpenTelemetry.
+
+Skills: Kubernetes, Terraform, AWS, GCP, Prometheus, Grafana, Python, Bash, Docker, CI/CD

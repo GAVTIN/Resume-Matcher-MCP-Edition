@@ -1,0 +1,11 @@
+Elena Vasquez
+UI/UX Designer
+
+Experience:
+- 5 years of experience designing digital products, from research and wireframing to high-fidelity prototypes.
+- Led the redesign of a core onboarding flow, increasing completion rate by 22%.
+- Built and maintained a Figma-based design system used by product and engineering teams.
+- Conducted usability testing sessions and synthesized findings into actionable design recommendations.
+- Basic proficiency in HTML/CSS to prototype interactions and collaborate with frontend engineers.
+
+Skills: Figma, Sketch, Adobe XD, Prototyping, User Research, HTML, CSS, Design Systems

@@ -1,0 +1,22 @@
+Job ID: BACKEND-2026-114
+Title: Senior Backend Engineer - Platform Team
+
+We're looking for a Senior Backend Engineer to help build and scale
+our core platform services.
+
+Requirements:
+- 5+ years professional software engineering experience
+- Strong Python or Node.js backend experience
+- Experience designing REST APIs and working with relational databases
+  (PostgreSQL or MySQL)
+- Experience with distributed systems concepts: caching, queues,
+  eventual consistency
+- Comfortable working with Docker and at least one major cloud
+  provider (AWS, GCP, or Azure)
+- Bonus: experience with LLM/agent frameworks (LangChain, LangGraph)
+  or the Model Context Protocol
+- Bonus: experience mentoring junior engineers or leading small
+  technical initiatives
+
+We value engineers who can operate independently, write clean and
+well-tested code, and communicate tradeoffs clearly.

@@ -1,0 +1,11 @@
+Priya Nair
+Junior Frontend Engineer
+
+Experience:
+- 1.5 years of professional experience building responsive web interfaces using React and JavaScript.
+- Implemented UI components for an internal admin dashboard, collaborating closely with a senior engineer for code review.
+- Fixed cross-browser CSS issues and improved mobile responsiveness for a customer-facing marketing site.
+- Participated in an agile team, attending daily standups and sprint planning sessions.
+- Completed an intensive 12-week coding bootcamp focused on JavaScript and React before joining current role.
+
+Skills: React, JavaScript, HTML, CSS, Git, Bootstrap, Figma (basic)

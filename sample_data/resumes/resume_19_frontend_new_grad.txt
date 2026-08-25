@@ -1,0 +1,11 @@
+Ethan Brooks
+Frontend Engineer (New Graduate)
+
+Experience:
+- Recent Computer Science graduate with a 3-month internship in frontend engineering at a mid-sized tech company.
+- Built a feature for an internal analytics dashboard using React, working under the guidance of a senior mentor.
+- Completed coursework in data structures, algorithms, and web development, with a capstone project building a full-stack task management app.
+- Contributed to a small open-source React component library as a side project.
+- Eager to grow frontend skills in a collaborative team environment.
+
+Skills: React, JavaScript, HTML, CSS, Git, basic TypeScript, Python (coursework)

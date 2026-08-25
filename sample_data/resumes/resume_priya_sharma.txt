@@ -1,0 +1,19 @@
+Priya Sharma
+Senior Backend Engineer
+
+Experience:
+- 6 years building backend services in Python (FastAPI, Django) and
+  Node.js (Express).
+- Designed and shipped REST APIs serving 2M+ daily requests, backed
+  by PostgreSQL with read replicas and Redis caching.
+- Introduced a message-queue (RabbitMQ) based pipeline to decouple
+  order processing from checkout, cutting p99 latency by 40%.
+- Deployed and operated services on AWS (ECS, RDS, S3) using Docker
+  and Terraform.
+- Mentored two junior engineers and led the migration of a monolith
+  to a service-oriented architecture.
+- Recently built a small internal tool using LangGraph and the Model
+  Context Protocol to let support agents query internal APIs safely.
+
+Skills: Python, FastAPI, Django, Node.js, PostgreSQL, Redis, RabbitMQ,
+AWS, Docker, Terraform, LangGraph, MCP

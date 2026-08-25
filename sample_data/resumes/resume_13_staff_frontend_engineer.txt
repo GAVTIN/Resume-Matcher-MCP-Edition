@@ -1,0 +1,11 @@
+Amara Okafor
+Staff Frontend Engineer
+
+Experience:
+- 11 years of frontend engineering experience, including 4 years in staff-level and technical leadership roles.
+- Set frontend architecture direction for a company-wide platform used by over 50 engineers across 8 teams.
+- Led the evaluation and adoption of Next.js and a micro-frontend architecture, improving deploy independence across teams.
+- Established frontend performance budgets and monitoring, improving Core Web Vitals scores across all products.
+- Regularly mentors senior and mid-level engineers, and represents frontend in company-wide architecture reviews.
+
+Skills: React, TypeScript, Next.js, Micro-frontends, GraphQL, Webpack, Module Federation, Performance Optimization, Accessibility
