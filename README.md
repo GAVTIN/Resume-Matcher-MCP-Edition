@@ -78,7 +78,7 @@ From the repo root, create the virtual environment and install dependencies.
 ### Bash / Git Bash / Linux / macOS
 
 ```bash
-cd /path/to/mcp_agentic_architecture/files
+cd [Path To Files]
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
@@ -89,7 +89,7 @@ python matching_agent.py
 ### Windows PowerShell
 
 ```powershell
-cd C:\Airtribe Projects\mcp_agentic_architecture\files
+cd [Path To Files]
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
