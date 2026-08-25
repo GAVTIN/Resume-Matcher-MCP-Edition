@@ -1,6 +1,6 @@
 # Resume Matcher — MCP Edition
 
-**Milestone 2 capstone:** the Milestone 1 resume-matching agent's direct
+Resume-matching agent's direct
 filesystem tools, replaced with a standalone MCP server, plus a
 LangGraph agent refactored to speak to it (and a second MCP server)
 through a real MCP client instead of local function calls.
@@ -71,27 +71,54 @@ straight to `[*]` without spending an LLM call, and `--watch` mode (see
 below) reprocesses only what actually changed instead of the whole
 directory every time.
 
-## Setup
+## Run locally
+
+From the repo root, create the virtual environment and install dependencies.
+
+### Bash / Git Bash / Linux / macOS
 
 ```bash
+cd /path/to/mcp_agentic_architecture/files
 python3 -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-export ANTHROPIC_API_KEY=<your-api-key>
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+export ANTHROPIC_API_KEY="<your-anthropic-api-key>"
+python matching_agent.py
 ```
 
-## Usage
+### Windows PowerShell
+
+```powershell
+cd C:\Airtribe Projects\mcp_agentic_architecture\files
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+$env:ANTHROPIC_API_KEY = "<your-anthropic-api-key>"
+python .\matching_agent.py
+```
+
+### If you want to rescan the inbox from scratch
+
+The watcher keeps a small state file so it only scores newly-added resumes. If you want to process the current folder again, clear watcher state first:
 
 ```bash
-# one pass over sample_data/
+python matching_agent.py --reset-watch
+```
+
+### Common usage patterns
+
+```bash
+# one pass over the bundled sample data
 python matching_agent.py
 
-# your own job description / resume folder
+# run against your own job description and resume folder
 python matching_agent.py --job-description path/to/jd.txt --resume-dir path/to/resumes
 
 # keep polling for newly added resumes every 15s (Ctrl+C to stop)
 python matching_agent.py --watch --interval 15
 ```
+
+> Use the project venv's Python, not the system Python, when running the agent. In this repo, the working command is typically `./.venv/Scripts/python.exe matching_agent.py` on Windows or `source .venv/bin/activate && python matching_agent.py` on Unix-like shells.
 
 Run either server standalone to poke at it directly (handy with the
 [MCP Inspector](https://modelcontextprotocol.io/docs/tools/inspector)):
