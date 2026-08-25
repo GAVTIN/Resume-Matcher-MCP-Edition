@@ -139,9 +139,6 @@ pytest tests/ -v
 
 ## Design decisions
 
-A few things worth being able to speak to, since this is going in a
-portfolio:
-
 **MCP SDK pinned to `mcp>=1.28,<2.0`.** The Python SDK's v2 line
 shipped alongside the 2026-07-28 MCP spec revision and renames
 `FastMCP` to `MCPServer` (now under `mcp.server.mcpserver`). v1.x is
@@ -207,5 +204,5 @@ resume-matcher-mcp/
 │   └── test_matching_agent.py
 ├── sample_data/
 │   ├── job_description.txt
-│   └── resumes/                  # 3 resumes, deliberately strong/partial/weak fit
+│   └── resumes/                  # 21 resumes, deliberately strong/partial/weak fit
 └── results/                      # match_results.jsonl + notifications.log (gitignored)
